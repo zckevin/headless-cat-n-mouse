@@ -9,6 +9,24 @@ module.exports = async function(page) {
     'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.39 Safari/537.36';
   await page.setUserAgent(userAgent);
 
+await page.evaluateOnNewDocument(() => {
+		    
+	setTimeout(() => {
+	var script = document.createElement('script');
+	script.src = 'http://localhost:5000/func_match.js';
+	script.type = 'text/javascript';
+	document.getElementsByTagName('head')[0].appendChild(script);
+
+	script = document.createElement('script');
+	script.src = 'http://localhost:5000/bundle.js';
+	script.type = 'text/javascript';
+	document.getElementsByTagName('head')[0].appendChild(script);
+	}, 500)
+	    
+		    
+		    
+});
+
   // Pass the Webdriver Test.
   await page.evaluateOnNewDocument(() => {
     const newProto = navigator.__proto__;
